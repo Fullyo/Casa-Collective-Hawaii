@@ -135,52 +135,45 @@
 
     // --- REUSABLE COMPONENTS ---
 
-    const Header = ({ currentPage, setCurrentPage }) => {
-      const navLinks = ['Home', 'Our Accommodations', 'Things To Do', 'Where to Eat', 'About Us', 'Contact Us'];
-      const accommodationsUrl = 'https://casagrateful.guestybookings.com/en/properties?minOccupancy=1';
+    // Header component used on each page. It renders simple <a> tags with
+    // appropriate href values so each section of the site is a separate HTML file.
+    const Header = ({ currentPage }) => {
+      // Define the site navigation and which file each entry points to. The
+      // "Our Accommodations" link still points to Guesty (external).
+      const navLinks = [
+        { label: 'Home', href: 'index.html' },
+        { label: 'Our Accommodations', href: 'https://casagrateful.guestybookings.com/en/properties?minOccupancy=1', external: true },
+        { label: 'Things To Do', href: 'things-to-do.html' },
+        { label: 'Where to Eat', href: 'where-to-eat.html' },
+        { label: 'About Us', href: 'about.html' },
+        { label: 'Contact Us', href: 'contact.html' },
+      ];
 
       return (
         <header className="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50 w-full">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-20">
               <div className="flex-shrink-0">
-                <div 
-                  className="flex items-center space-x-2 cursor-pointer"
-                  onClick={() => setCurrentPage('Home')}
-                >
+                <a href="index.html" className="flex items-center space-x-2">
                   <h1 className="font-title text-3xl text-brand-accent">Casa Collective Hawaii</h1>
-                </div>
+                </a>
               </div>
               <nav className="hidden md:flex space-x-1 lg:space-x-4">
-                {navLinks.map(link => {
-                  if (link === 'Our Accommodations') {
-                    return (
-                      <a
-                        key={link}
-                        href={accommodationsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300"
-                      >
-                        {link}
-                      </a>
-                    );
-                  }
-                  return (
-                    <a
-                      key={link}
-                      href="#"
-                      onClick={(e) => { e.preventDefault(); setCurrentPage(link); }}
-                      className={`nav-link px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
-                        currentPage === link
-                          ? 'text-brand-accent'
-                          : 'text-gray-700 hover:text-brand-accent'
-                      }`}
-                    >
-                      {link}
-                    </a>
-                  );
-                })}
+                {navLinks.map(link => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noopener noreferrer' : undefined}
+                    className={`nav-link px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
+                      currentPage === link.label
+                        ? 'text-brand-accent'
+                        : 'text-gray-700 hover:text-brand-accent'
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                ))}
               </nav>
             </div>
           </div>
@@ -188,7 +181,8 @@
       );
     };
 
-    const Footer = ({ setCurrentPage }) => (
+    // Footer component renders static links without onClick handlers.
+    const Footer = () => (
       <footer className="bg-brand-primary text-brand-accent">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -199,10 +193,10 @@
                 <div>
                   <h3 className="text-lg font-section font-bold mb-4">Quick Links</h3>
                   <ul className="space-y-2 text-sm">
-                    <li><a href="#" onClick={(e) => {e.preventDefault(); setCurrentPage('Home')}} className="hover:text-white transition">Home</a></li>
+                    <li><a href="index.html" className="hover:text-white transition">Home</a></li>
                     <li><a href="https://casagrateful.guestybookings.com/en/properties?minOccupancy=1" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">Our Accommodations</a></li>
-                    <li><a href="#" onClick={(e) => {e.preventDefault(); setCurrentPage('About Us')}} className="hover:text-white transition">About Us</a></li>
-                    <li><a href="#" onClick={(e) => {e.preventDefault(); setCurrentPage('Contact Us')}} className="hover:text-white transition">Contact Us</a></li>
+                    <li><a href="about.html" className="hover:text-white transition">About Us</a></li>
+                    <li><a href="contact.html" className="hover:text-white transition">Contact Us</a></li>
                   </ul>
                 </div>
                 <div>
@@ -219,7 +213,7 @@
                 </div>
               </div>
               <div className="mt-8 pt-8 border-t border-brand-secondary/50 text-center text-sm">
-                <p>© 2025 Casa Collective Hawaii. All Rights Reserved. </p>
+                <p>© 2025 Casa Collective Hawaii. All Rights Reserved.</p>
                 <p className="text-xs text-brand-accent/70 mt-2">
                     Website by <a href="https://www.fullyo.io" target="_blank" rel="noopener noreferrer" className="hover:text-white">Fullyo</a>
                 </p>
@@ -624,9 +618,11 @@
     );
 
     function App() {
-      const [currentPage, setCurrentPage] = React.useState('Home');
-      
+      // Highlight the current navigation link. For the home page we set it to 'Home'.
+      const currentPage = 'Home';
+
       React.useEffect(() => {
+        // Keep the scroll animation functionality but remove dependency on currentPage
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -639,28 +635,16 @@
         elements.forEach(el => observer.observe(el));
 
         return () => elements.forEach(el => observer.unobserve(el));
-      }, [currentPage]);
-
-
-      const renderPage = () => {
-        switch (currentPage) {
-          case 'Home': return <HomePage setCurrentPage={setCurrentPage} />;
-          case 'Our Accommodations': return <AllListingsPage />;
-          case 'Things To Do': return <ThingsToDoPage />;
-          case 'Where to Eat': return <WhereToEatPage />;
-          case 'About Us': return <AboutUsPage />;
-          case 'Contact Us': return <ContactUsPage />;
-          default: return <HomePage setCurrentPage={setCurrentPage} />;
-        }
-      };
+      }, []);
 
       return (
         <div className="font-sans antialiased text-gray-900">
-          <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
+          <Header currentPage={currentPage} />
           <main>
-            {renderPage()}
+            {/* Render only the home page content on the home file */}
+            <HomePage />
           </main>
-          <Footer setCurrentPage={setCurrentPage} />
+          <Footer />
         </div>
       );
     }
