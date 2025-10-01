@@ -1,0 +1,35 @@
+# This file configures your site on Netlify.
+
+# Build settings (optional for static sites but good practice)
+[build]
+  publish = "/" # The folder to publish, "/" means the root of your project
+  command = ""    # No build command needed for a static site
+
+# Redirect for the accommodations link to your Guesty booking engine.
+[[redirects]]
+  from = "/accommodations"
+  to = "https://casagrateful.guestybookings.com/en/properties?minOccupancy=1"
+  status = 301 # Permanent redirect
+  force = true
+
+# Rules to create "clean URLs" by removing the .html extension.
+# This makes yoursite.com/about load the about.html file.
+[[redirects]]
+  from = "/things-to-do"
+  to = "/things-to-do.html"
+  status = 200
+
+[[redirects]]
+  from = "/where-to-eat"
+  to = "/where-to-eat.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
