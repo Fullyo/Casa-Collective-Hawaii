@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Collective Hawaii</title>
+
+    <!-- Social Share Meta Tags (Open Graph) -->
+    <meta property="og:title" content="Casa Collective Hawaii | Where Design Meets Aloha" />
+    <meta property="og:description" content="A curated collection of private residences on Hawaii's Big Island, designed for an immersive experience in mind, body, and soul." />
+    <meta property="og:image" content="https://casagrateful.b-cdn.net/katherine-kromberg-DWhS1r-hJd0-unsplash.jpg" />
+    <meta property="og:url" content="https://www.your-live-domain.com" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Raleway:wght=700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React Libraries -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Babel to translate JSX in the browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script>
+      // Custom Tailwind configuration to add the new brand color and fonts
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'sans': ['Open Sans', 'sans-serif'], // Body Text
+              'title': ['Cormorant Garamond', 'serif'], // Title & Heading
+              'subtitle': ['Montserrat', 'sans-serif'], // Subtitle & Subheading
+              'section': ['Raleway', 'sans-serif'], // Section Header
+            },
+            colors: {
+              brand: {
+                primary: '#dbc9ba', // Light Tan
+                secondary: '#a89c90', // Medium Taupe
+                accent: '#616d69', // Dark Green/Gray
+                bg: '#f7f5f2' // Off-white
+              }
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+        .prose p { margin-bottom: 1em; }
+        .carousel-arrow {
+            transition: opacity 0.3s ease;
+        }
+        .group:hover .carousel-arrow {
+            opacity: 1;
+        }
+        /* Animation Styles */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition-delay: 0.2s;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #dbc9ba;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        /* Ken Burns Effect for Hero Image */
+        .hero-image {
+            animation: kenburns 20s ease-out infinite;
+        }
+        @keyframes kenburns {
+            0% {
+                transform: scale(1.0) translate(0, 0);
+            }
+            50% {
+                transform: scale(1.1) translate(-2%, 2%);
+            }
+            100% {
+                transform: scale(1.0) translate(0, 0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-brand-bg font-sans">
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+    // --- SVG Icon Components (Self-Contained) ---
+    const Icon = ({ path, className = "w-6 h-6" }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+            {path}
+        </svg>
+    );
+    const MapPin = ({ className }) => <Icon className={className} path={<><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></>} />;
+    const Star = ({ className, fill = "none" }) => <Icon className={className} path={<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill={fill}/>}/>;
+    const BedDouble = ({ className }) => <Icon className={className} path={<><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 10v10"/><path d="M2 18h20"/></>} />;
+    const Bath = ({ className }) => <Icon className={className} path={<path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-2.12 0L3 5a1.5 1.5 0 0 0 0 2.12L5 9l4-4Z M3.5 16.5 6 19l3-3L7 14l-3.5 2.5ZM18 11h.01 M13 16h.01 M17 7h.01 M21 15h.01 M21 3v2a2 2 0 0 1-2 2H7.5a2 2 0 0 0-1.76.97L3 11h18a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"/>} />;
+    const Users = ({ className }) => <Icon className={className} path={<><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></>} />;
+    const Utensils = ({ className }) => <Icon className={className} path={<><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v11"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3z"/><path d="M21 2v7"/></>} />;
+    const Sun = ({ className }) => <Icon className={className} path={<><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></>} />;
+    const Coffee = ({ className }) => <Icon className={className} path={<><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a6 6 0 0 1-6 6Z"/><path d="M18 8h2v4h-2"/></>} />;
+    const Waves = ({ className }) => <Icon className={className} path={<><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></>} />;
+    const Mountain = ({ className }) => <Icon className={className} path={<path d="m8 3 4 8 5-5 5 15H2L8 3z"/>} />;
+    const Ship = ({ className }) => <Icon className={className} path={<><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M12 6 8 2l-2 2"/><path d="m12 15-3.5-3.5"/><path d="m12 9 3.5 3.5"/><path d="M12 3v12"/></>} />;
+    const Mail = ({ className }) => <Icon className={className} path={<><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></>} />;
+    const Instagram = ({ className }) => <Icon className={className} path={<><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></>} />;
+    const LocationIcon = ({className}) => <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><path d="M12 10l2-4-4 2 2 2z"/></svg>;
+    const DesignerIcon = ({className}) => <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3L9.18 8.82a3 3 0 0 0 2.2 4.68L18 12l-6.18 1.5a3 3 0 0 0-2.2 4.68L12 21l2.82-5.82a3 3 0 0 0-2.2-4.68L6 12l6.18-1.5a3 3 0 0 0 2.2-4.68z"/></svg>;
+
+    // --- REUSABLE COMPONENTS ---
+
+    const Header = ({ currentPage, setCurrentPage }) => {
+      const navLinks = ['Home', 'Our Accommodations', 'Things To Do', 'Where to Eat', 'About Us', 'Contact Us'];
+      const accommodationsUrl = 'https://casagrateful.guestybookings.com/en/properties?minOccupancy=1';
+
+      return (
+        <header className="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50 w-full">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-20">
+              <div className="flex-shrink-0">
+                <div 
+                  className="flex items-center space-x-2 cursor-pointer"
+                  onClick={() => setCurrentPage('Home')}
+                >
+                  <h1 className="font-title text-3xl text-brand-accent">Casa Collective Hawaii</h1>
+                </div>
+              </div>
+              <nav className="hidden md:flex space-x-1 lg:space-x-4">
+                {navLinks.map(link => {
+                  if (link === 'Our Accommodations') {
+                    return (
+                      <a
+                        key={link}
+                        href={accommodationsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300"
+                      >
+                        {link}
+                      </a>
+                    );
+                  }
+                  return (
+                    <a
+                      key={link}
+                      href="#"
+                      onClick={(e) => { e.preventDefault(); setCurrentPage(link); }}
+                      className={`nav-link px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
+                        currentPage === link
+                          ? 'text-brand-accent'
+                          : 'text-gray-700 hover:text-brand-accent'
+                      }`}
+                    >
+                      {link}
+                    </a>
+                  );
+                })}
+              </nav>
+            </div>
+          </div>
+        </header>
+      );
+    };
+
+    const Footer = ({ setCurrentPage }) => (
+      <footer className="bg-brand-primary text-brand-accent">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h2 className="font-title text-2xl text-brand-accent mb-4">Casa Collective Hawaii</h2>
+                    <p className="text-sm">A curated collection of private residences on Hawaii's Big Island, designed for an immersive experience in mind, body, and soul.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-section font-bold mb-4">Quick Links</h3>
+                  <ul className="space-y-2 text-sm">
+                    <li><a href="#" onClick={(e) => {e.preventDefault(); setCurrentPage('Home')}} className="hover:text-white transition">Home</a></li>
+                    <li><a href="https://casagrateful.guestybookings.com/en/properties?minOccupancy=1" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">Our Accommodations</a></li>
+                    <li><a href="#" onClick={(e) => {e.preventDefault(); setCurrentPage('About Us')}} className="hover:text-white transition">About Us</a></li>
+                    <li><a href="#" onClick={(e) => {e.preventDefault(); setCurrentPage('Contact Us')}} className="hover:text-white transition">Contact Us</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-lg font-section font-bold mb-4">Connect</h3>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-center"><MapPin className="w-5 h-5 mr-2"/> Kealakekua, HI, USA</li>
+                    <li className="flex items-center"><Mail className="w-5 h-5 mr-2"/> casacollectivehawaii@gmail.com</li>
+                    <li className="flex items-center">
+                        <a href="https://www.instagram.com/casacollectivehawaii" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-white transition">
+                            <Instagram className="w-5 h-5 mr-2"/> @casacollectivehawaii
+                        </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="mt-8 pt-8 border-t border-brand-secondary/50 text-center text-sm">
+                <p>© 2025 Casa Collective Hawaii. All Rights Reserved. </p>
+                <p className="text-xs text-brand-accent/70 mt-2">
+                    Website by <a href="https://www.fullyo.io" target="_blank" rel="noopener noreferrer" className="hover:text-white">Fullyo</a>
+                </p>
+              </div>
+        </div>
+      </footer>
+    );
+
+    const PageHero = ({ title, subtitle, imageUrl, isHome = false, imagePosition = 'object-center', children }) => {
+        const heightClass = isHome ? 'h-[85vh] min-h-[600px]' : 'h-[50vh] min-h-[400px]';
+        return (
+            <div className={`relative bg-gray-800 ${heightClass} flex items-center justify-center text-white text-center overflow-hidden`}>
+                <div className="absolute inset-0">
+                    <img src={imageUrl} alt={title} className={`hero-image w-full h-full object-cover ${imagePosition}`} onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1920x1080/334155/FFFFFF?text=Add+Image+URL'; }}/>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                </div>
+                <div className="relative z-10 px-4">
+                    <h1 className="text-4xl md:text-7xl font-title font-bold tracking-tight leading-tight mb-4" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.5)'}}>{title}</h1>
+                    {subtitle && <p className="text-lg md:text-xl max-w-3xl mx-auto font-subtitle" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>{subtitle}</p>}
+                    {children}
+                </div>
+            </div>
+        );
+    };
+
+    const PropertyCard = ({ property, isCarousel = false }) => {
+        const [currentIndex, setCurrentIndex] = React.useState(0);
+
+        const nextSlide = (e) => {
+            e.stopPropagation();
+            setCurrentIndex(prevIndex => (prevIndex + 1) % property.imageUrls.length);
+        };
+
+        const prevSlide = (e) => {
+            e.stopPropagation();
+            setCurrentIndex(prevIndex => (prevIndex - 1 + property.imageUrls.length) % property.imageUrls.length);
+        };
+        
+        const handleCardClick = () => {
+            window.open(property.bookingUrl, '_blank');
+        };
+
+        const imageUrl = isCarousel ? property.imageUrls[currentIndex] : property.imageUrls[0];
+
+        return (
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer" onClick={handleCardClick}>
+                <div className="relative group">
+                    <img src={imageUrl} alt={`${property.name} ${currentIndex + 1}`} className="h-64 w-full object-cover"/>
+                    {isCarousel && (
+                        <>
+                            <button onClick={prevSlide} className="carousel-arrow opacity-0 group-hover:opacity-100 absolute top-1/2 left-2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                            </button>
+                            <button onClick={nextSlide} className="carousel-arrow opacity-0 group-hover:opacity-100 absolute top-1/2 right-2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+                            </button>
+                        </>
+                    )}
+                </div>
+                <div className="p-6">
+                    <h3 className="text-xl font-title font-bold text-gray-800 mb-2">{property.name}</h3>
+                    <div className="flex items-center text-gray-600 space-x-4 mb-4">
+                      <span className="flex items-center"><Users className="w-5 h-5 mr-1 text-brand-accent"/> {property.guests} guests</span>
+                      <span className="flex items-center"><BedDouble className="w-5 h-5 mr-1 text-brand-accent"/> {property.bedrooms} bedroom</span>
+                      <span className="flex items-center"><Bath className="w-5 h-5 mr-1 text-brand-accent"/> {property.baths} bath</span>
+                    </div>
+                    <button className="w-full bg-brand-primary text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-secondary transition duration-300 transform hover:scale-105">
+                      View Details & Book
+                    </button>
+                </div>
+            </div>
+        );
+    };
+    
+    // --- PAGE COMPONENTS ---
+
+    const HomePage = ({ setCurrentPage }) => {
+      const propertyData = [
+            { id: 1, name: 'Casa Grateful', guests: 5, bedrooms: 1, baths: 1, bookingUrl: 'https://casagrateful.guestybookings.com/en/properties/685304032fff27001369da07?city=Kealakekua&country=United+States+of+America&minOccupancy=1', imageUrls: [
+                'https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.16%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.36%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.44%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.48%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.58.03%20PM.png'
+            ]},
+            { id: 2, name: 'Casa Gratitude', guests: 5, bedrooms: 2, baths: 2, bookingUrl: 'https://casagrateful.guestybookings.com/en/properties/685303e1363e040022c86fa3?city=Kealakekua&country=United+States+of+America&minOccupancy=1', imageUrls: [
+                'https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.27%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.33%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.39%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.43%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.53%20PM.png'
+            ]},
+            { id: 3, name: 'Casa Aloha', guests: 4, bedrooms: 1, baths: 1, bookingUrl: 'https://casagrateful.guestybookings.com/en/properties/6878af1fde36ed001380c5a8?minOccupancy=1', imageUrls: [
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.12.54%20PM.png',
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.13.51%20PM.png',
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.13.57%20PM.png',
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.14.03%20PM.png',
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.14.07%20PM.png',
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.14.14%20PM.png',
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.14.19%20PM.png'
+            ]}
+      ];
+      const testimonials = [
+        { quote: "The house was amazing, and the views were breathtaking. We had a fantastic time snorkeling in the bay and exploring the area. The hosts were incredibly helpful and responsive. We can't wait to come back!", author: "Jessica M.", rating: 5 },
+        { quote: "An absolute paradise. Waking up to the sound of the ocean was a dream. The property was immaculate and had everything we needed for a comfortable stay. Highly recommend!", author: "David L.", rating: 5 }
+      ];
+      const galleryImages = [
+        'https://casagrateful.b-cdn.net/Web%20Photos/chloe-leis-qUVov_XcAc0-unsplash.jpg',
+        'https://casagrateful.b-cdn.net/Food/charlota-blunarova-JcchA0_Z-fA-unsplash.jpg',
+        'https://casagrateful.b-cdn.net/Web%20Photos/jeremy-bishop-GIpGxe2_cT4-unsplash.jpg',
+        'https://casagrateful.b-cdn.net/Web%20Photos/pascal-debrunner-lHJZ2JTxSlI-unsplash.jpg',
+        'https://casagrateful.b-cdn.net/Food/nico-smit-F3BVzo_h9Sg-unsplash.jpg',
+        'https://casagrateful.b-cdn.net/Web%20Photos/jake-houglum-dxdA7qd7Y9o-unsplash.jpg'
+      ];
+      const highlights = [
+        { icon: Waves, title: 'Panoramic Ocean Views', text: 'Wake up to breathtaking ocean views that stretch for miles.' },
+        { icon: LocationIcon, title: 'Prime Location', text: 'Perfectly situated to explore the best beaches and attractions of the Big Island.' },
+        { icon: DesignerIcon, title: 'Designer Interiors', text: 'Meticulously crafted by the Twin Island Interiors Design Group for your comfort.' }
+      ];
+      const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
+      const nextTestimonial = () => setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+      const prevTestimonial = () => setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+
+      return (
+        <div className="bg-brand-bg">
+          <PageHero 
+            title="Where Design Meets Aloha." 
+            subtitle="Escape to the tropical paradise of Hawaii’s Big Island"
+            imageUrl="https://casagrateful.b-cdn.net/katherine-kromberg-DWhS1r-hJd0-unsplash.jpg"
+            isHome={true}
+          >
+            <div className="mt-8">
+                <a 
+                  href="https://casagrateful.guestybookings.com/en/properties?minOccupancy=1"
+                  target="_blank"
+                  className="bg-brand-primary hover:bg-brand-secondary text-white font-bold py-4 px-8 rounded-lg transition duration-300 text-lg shadow-lg transform hover:scale-105"
+                >
+                    Explore Our Stays
+                </a>
+            </div>
+          </PageHero>
+          
+          <section className="py-20 sm:py-32 bg-white animate-on-scroll">
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="grid md:grid-cols-2 gap-12 items-center">
+                      <div className="rounded-lg overflow-hidden shadow-xl">
+                          <img src="https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.16%20PM.png" alt="Immersive Getaway" className="w-full h-full object-cover"/>
+                      </div>
+                      <div>
+                          <h2 className="text-3xl lg:text-4xl font-section font-bold text-gray-800 mb-4">Your Immersive Getaway Awaits</h2>
+                          <p className="text-gray-700 mb-8 leading-relaxed">
+                              Casa Collective Hawaii apartments, meticulously crafted by the Twin Island Interiors Design Group, beckon you to escape to the tropical paradise of Hawaii's Big Island. We are dedicated to providing you with a complete experience from the moment you step through the door.
+                          </p>
+                          <a href="https://casagrateful.guestybookings.com/en/properties?minOccupancy=1" target="_blank" className="bg-brand-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-brand-secondary transition-transform duration-300 transform hover:scale-105 inline-block">
+                              Choose Your Stay
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+          <section className="py-20 sm:py-32 bg-white animate-on-scroll">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl lg:text-4xl font-section font-bold text-center text-gray-800 mb-16">Our Accommodations</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                {propertyData.map(prop => <PropertyCard key={prop.id} property={prop} isCarousel={true} />)}
+              </div>
+            </div>
+          </section>
+          
+          <section className="py-20 sm:py-32 bg-gradient-to-b from-white to-brand-bg animate-on-scroll">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl lg:text-4xl font-section font-bold text-center text-gray-800 mb-16">An Unforgettable Stay</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-5xl mx-auto">
+                {highlights.map(item => (
+                  <div key={item.title}>
+                    <div className="mb-4 inline-block p-4 bg-brand-primary/20 rounded-full">
+                      <item.icon className="w-10 h-10 text-brand-accent"/>
+                    </div>
+                    <h3 className="text-xl font-title font-bold text-gray-900 mb-2">{item.title}</h3>
+                    <p className="text-gray-600">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+          
+          <section className="py-20 sm:py-32 bg-brand-accent text-white animate-on-scroll">
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+                  <h2 className="text-3xl lg:text-4xl font-section font-bold text-center mb-16">What Our Guests Say</h2>
+                  <div className="max-w-3xl mx-auto text-center">
+                      <div className="text-5xl text-brand-primary opacity-50">“</div>
+                      <p className="text-xl md:text-2xl font-subtitle italic mb-6">{testimonials[currentTestimonial].quote}</p>
+                      <div className="flex justify-center mb-4">
+                          {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => <Star key={i} className="w-6 h-6 text-yellow-400" fill="currentColor"/>)}
+                      </div>
+                      <p className="font-bold text-lg">{testimonials[currentTestimonial].author}</p>
+                  </div>
+                  <button onClick={prevTestimonial} className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-2 rounded-full transition">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                  </button>
+                  <button onClick={nextTestimonial} className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-2 rounded-full transition">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+                  </button>
+              </div>
+          </section>
+
+          <section className="py-20 sm:py-32 bg-white animate-on-scroll">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl lg:text-4xl font-section font-bold text-center text-gray-800 mb-16">Experience the Beauty of Hawaii</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {galleryImages.map((src, index) => (
+                  <div key={index} className="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <img src={src} alt={`Hawaii Gallery Image ${index + 1}`} className="w-full h-full object-cover aspect-[4/3]"/>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-brand-bg animate-on-scroll">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+              <h2 className="text-3xl lg:text-4xl font-section font-bold text-gray-800 mb-4">Your Perfect Getaway Awaits</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto mb-8">Ready to experience the magic of Casa Collective Hawaii? Check availability and book your unforgettable vacation today. We can't wait to welcome you.</p>
+              <a href="https://casagrateful.guestybookings.com/en/properties?minOccupancy=1" target="_blank" className="bg-brand-primary hover:bg-brand-secondary text-white font-bold py-4 px-8 rounded-lg transition duration-300 text-lg shadow-lg transform hover:scale-105 inline-block">
+                Book Your Stay
+              </a>
+            </div>
+          </section>
+        </div>
+      );
+    };
+
+    const AllListingsPage = () => {
+        const propertyData = [
+             { id: 1, name: 'Casa Grateful', guests: 5, bedrooms: 1, baths: 1, bookingUrl: 'https://casagrateful.guestybookings.com/en/properties/685304032fff27001369da07?city=Kealakekua&country=United+States+of+America&minOccupancy=1', imageUrls: [
+                'https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.16%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.36%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.44%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.48%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.58.03%20PM.png'
+            ]},
+            { id: 2, name: 'Casa Gratitude', guests: 5, bedrooms: 2, baths: 2, bookingUrl: 'https://casagrateful.guestybookings.com/en/properties/685303e1363e040022c86fa3?city=Kealakekua&country=United+States+of+America&minOccupancy=1', imageUrls: [
+                'https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.27%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.33%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.39%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.43%20PM.png',
+                'https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.53%20PM.png'
+            ]},
+            { id: 3, name: 'Casa Aloha', guests: 4, bedrooms: 1, baths: 1, bookingUrl: 'https://casagrateful.guestybookings.com/en/properties/6878af1fde36ed001380c5a8?minOccupancy=1', imageUrls: [
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.12.54%20PM.png',
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.13.51%20PM.png',
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.13.57%20PM.png',
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.14.03%20PM.png',
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.14.07%20PM.png',
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.14.14%20PM.png',
+                'https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.14.19%20PM.png'
+            ]}
+        ];
+
+        return (
+            <div className="bg-brand-bg">
+                <PageHero 
+                    title="Our Accommodations"
+                    subtitle="Find your perfect home away from home on the Big Island."
+                    imageUrl="https://casagrateful.b-cdn.net/Web%20Photos/simon-godfrey-r9aYpk4Ys3A-unsplash.jpg"
+                />
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {propertyData.map(prop => <PropertyCard key={prop.id} property={prop} isCarousel={true} />)}
+                    </div>
+                </div>
+            </div>
+        );
+    };
+    
+    const InfoCard = ({ item }) => (
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+            <img src={item.imageUrl} alt={item.title} className="h-48 w-full object-cover" onError={(e) => { e.target.onerror = null; e.target.src=`https://placehold.co/600x400/cccccc/FFFFFF?text=${item.title.replace(' ', '+')}`; }}/>
+            <div className="p-6">
+                <div className="flex items-center mb-4">
+                    <item.icon className="w-8 h-8 text-brand-accent"/>
+                    <h3 className="text-2xl font-section font-bold text-gray-800 ml-3">{item.title}</h3>
+                </div>
+                <ul className="space-y-2 list-disc list-inside text-gray-700">
+                    {item.points.map(point => <li key={point.name}><strong className="font-semibold">{point.name}:</strong> <span className="text-gray-600">{point.desc}</span> {point.link && <a href={point.link} target="_blank" className="text-brand-accent hover:underline text-sm ml-1">Book a tour</a>}</li>)}
+                </ul>
+            </div>
+        </div>
+    );
+
+    const ThingsToDoPage = () => {
+        const activities = [
+            { title: 'Coffee Tours', icon: Coffee, points: [{name: 'Kona Coffee & Tea', desc: 'A family-owned, single-estate farm in the heart of Kona offering tours from seed to cup.', link: 'https://www.konacoffeeandtea.com/pages/farm-tour'}, {name: 'Greenwell Farms', desc: 'One of Kona\'s oldest and most famous coffee farms.'}, {name: 'Mountain Thunder', desc: 'Experience a unique cloud forest coffee plantation.'}], imageUrl: 'https://casagrateful.b-cdn.net/Food/nico-smit-F3BVzo_h9Sg-unsplash.jpg' },
+            { title: 'Beaches', icon: Sun, points: [{name: 'Kealakekua Bay', desc: 'A historic bay perfect for snorkeling and seeing dolphins.'}, {name: 'Manini Beach Park', desc: 'A small, secluded beach with calm waters.'}, {name: 'Ho\'okena Beach Park', desc: 'A local favorite with beautiful gray sand.'}], imageUrl: 'https://casagrateful.b-cdn.net/Web%20Photos/pascal-debrunner-lHJZ2JTxSlI-unsplash.jpg' },
+            { title: 'Snorkeling', icon: Waves, points: [{name: 'Captain Cook Monument', desc: 'Some of the best snorkeling in Hawaii, accessible by boat or a challenging hike.'}, {name: 'Two Step', desc: 'Easy ocean access from lava rock, teeming with vibrant fish.'}, {name: 'Kahalu\'u Beach Park', desc: 'A great spot for beginners and families to see sea turtles.'}], imageUrl: 'https://casagrateful.b-cdn.net/Web%20Photos/jeremy-bishop-GIpGxe2_cT4-unsplash.jpg' },
+            { title: 'Hikes', icon: Mountain, points: [{name: 'Captain Cook Monument Trail', desc: 'A steep but rewarding hike down to the bay.'}, {name: 'Pu\'uhonua o Hōnaunau Park', desc: 'Explore a historic place of refuge with beautiful coastal trails.'}, {name: 'Makaula O‘oma Trail', desc: 'Also known as the Cloud Forest, this lush, shaded hike in Kona’s uplands leads you through native Hawaiian forest.'}], imageUrl: 'https://casagrateful.b-cdn.net/Web%20Photos/chloe-leis-qUVov_XcAc0-unsplash.jpg' },
+        ];
+
+        return (
+            <div className="bg-brand-bg">
+                <PageHero title="Things To Do" subtitle="Adventures & Tours on the Big Island" imageUrl="https://casagrateful.b-cdn.net/Web%20Photos/olga-subach-q21zEYOFxks-unsplash.jpg"/>
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+                    <div className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                        <h2 className="text-3xl lg:text-4xl font-section font-bold text-gray-800 mb-4">Our Island Favorites</h2>
+                        <p className="text-gray-600 leading-relaxed">One of our greatest joys is sharing the magic of the Big Island with our guests. These are a few of our family's favorite spots to explore, relax, and connect with the spirit of aloha. We hope you love them as much as we do.</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-on-scroll">
+                        {activities.map(item => <InfoCard key={item.title} item={item} />)}
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const WhereToEatPage = () => {
+        const foodSpots = [
+            { title: 'Kealakekua Food', icon: Utensils, points: [{name: 'Black Rock Pizza', desc: 'Artisanal pizzas with creative toppings.'}, {name: 'Teshima’s Restaurant', desc: 'A local landmark famous for its traditional Japanese-Hawaiian food (and great pancakes!).'}, {name: 'Gypsea Gelato', desc: 'Delicious, locally-made gelato with unique flavors.'}], imageUrl: 'https://casagrateful.b-cdn.net/Food/charlota-blunarova-JcchA0_Z-fA-unsplash.jpg' },
+            { title: 'Kona Town', icon: Ship, points: [{name: 'Umekes Fish Market', desc: 'Our go-to for the freshest, most authentic poke bowls on the island.'}, {name: 'Kona Brewing Co.', desc: 'The perfect spot for a casual afternoon with great local beer and delicious pizza.'}, {name: 'On the Rocks', desc: 'Enjoy cocktails and pupus with your feet in the sand.'}], imageUrl: 'https://casagrateful.b-cdn.net/Food/lucas-andrade-xp2uiLj9Mlo-unsplash.jpg' },
+            { title: 'Local Coffee', icon: Coffee, points: [{name: 'White Nēnē Coffee', desc: 'A boutique Kona coffee farm offering small-batch, hand-crafted brews.'}, {name: 'Kona Coffee and Tea Company', desc: 'A family-owned, single-estate farm and café where you can experience Kona coffee from tree to cup.'}, {name: 'HiCo', desc: 'A modern Kona café serving locally roasted coffee alongside a vibrant community atmosphere.'}], imageUrl: 'https://casagrateful.b-cdn.net/Food/nico-smit-F3BVzo_h9Sg-unsplash.jpg' },
+        ];
+        return (
+            <div className="bg-brand-bg">
+                <PageHero title="Where To Eat" subtitle="Our Recommendations for Dining on the Big Island" imageUrl="https://casagrateful.b-cdn.net/Food/pradeep-ghildiyal-jr3ZPsaQwQo-unsplash.jpg"/>
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+                    <div className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                        <h2 className="text-3xl lg:text-4xl font-section font-bold text-gray-800 mb-4">A Taste of the Island</h2>
+                        <p className="text-gray-600 leading-relaxed">From casual bites to fine dining, the Big Island has a vibrant food scene. Here are some of our personal favorites, the places we go to celebrate and enjoy the incredible local flavors.</p>
+                    </div>
+                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-on-scroll">
+                        {foodSpots.map(item => <InfoCard key={item.title} item={item} />)}
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const AboutUsPage = () => {
+        const aboutImageUrl = 'https://casagrateful.b-cdn.net/Screenshot%202025-09-23%2011.40.55%20AM.png';
+        
+        return (
+            <div className="bg-brand-bg">
+                <PageHero title="About Us" subtitle="Meet the family behind Casa Collective Hawaii" imageUrl="https://casagrateful.b-cdn.net/Web%20Photos/look-up-look-down-photography-t02XukS9dUU-unsplash.jpg" imagePosition="object-bottom"/>
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+                    <div className="bg-white p-8 sm:p-12 rounded-2xl shadow-xl animate-on-scroll">
+                        <div className="grid md:grid-cols-3 gap-8 md:gap-12 items-center">
+                            <div className="md:col-span-2">
+                                <h2 className="text-3xl lg:text-4xl font-section font-bold text-gray-800 mb-6">Our Story</h2>
+                                <div className="prose text-gray-700 max-w-none">
+                                    <p>Hello, I'm Meg, a Michigan native with a passion for creating unique and memorable experiences. With a background in interior design, property management, and personal concierge services, I've brought a distinctive touch to our short-term rental that sets it apart from the rest on the island.</p>
+                                    <p>When you step into our space, you'll immediately notice a decor that goes beyond the ordinary. I believe in offering more than just a place to rest your head – I want you to truly enjoy every aspect of your visit, engaging your mind, body, and soul. As a testament to this, our properties feature dedicated meditation spaces on private lanais, providing a tranquil retreat for reflection and relaxation.</p>
+                                    <p>My connection to the Hawaiian Islands goes beyond the physical - it's a calling that I've felt since my childhood, a series of dreams that led me to this beautiful place. My husband, a proud Kailua Kona local, and I are raising our two beautiful children on this gorgeous island. By choosing our rentals, you're gaining the unique perspective of a local homegrown boy and a Michigan import.</p>
+                                    <p>We are dedicated to crafting the best accommodations for our guests, and it brings us immense joy to share with you the rich culture, natural beauty, and aloha spirit that defines the Big Island. Your visit is an opportunity for us to fill your cup with the warmth and hospitality that embodies our home. We look forward to welcoming you to Casa Collective Hawaii, where every detail is designed to enhance your experience of the culture, beauty, and aloha that the Big Island has to offer.</p>
+                                    <p>Mahalo,<br/>Meg</p>
+                                </div>
+                            </div>
+                            <div className="md:col-span-1">
+                                <img src={aboutImageUrl} alt="The family behind Casa Collective Hawaii" className="rounded-xl shadow-2xl w-full h-auto aspect-[4/5] object-cover"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const ContactUsPage = () => (
+        <div className="bg-brand-bg">
+            <PageHero title="Contact Us" subtitle="We'd love to hear from you. Reach out with any questions." imageUrl="https://casagrateful.b-cdn.net/jonathan-mueller-pITeOCREplI-unsplash.jpg"/>
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+                <div className="grid md:grid-cols-2 gap-12">
+                    <div className="bg-white p-8 rounded-lg shadow-md animate-on-scroll">
+                        <h3 className="text-3xl lg:text-4xl font-section font-bold text-gray-800 mb-6">Send us a Message</h3>
+                        <form action="https://formspree.io/f/mldljzkl" method="POST" className="space-y-6">
+                            <div><label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label><input type="text" name="name" id="name" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brand-primary focus:ring-brand-primary p-2"/></div>
+                            <div><label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label><input type="email" name="email" id="email" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brand-primary focus:ring-brand-primary p-2"/></div>
+                            <div><label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label><textarea name="message" id="message" rows="4" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brand-primary focus:ring-brand-primary p-2"></textarea></div>
+                            <button type="submit" className="w-full bg-brand-primary text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-secondary transition duration-300 transform hover:scale-105">Send Message</button>
+                        </form>
+                    </div>
+                    <div className="bg-white p-8 rounded-lg shadow-md animate-on-scroll">
+                        <h3 className="text-3xl lg:text-4xl font-section font-bold text-gray-800 mb-6">Our Information</h3>
+                        <div className="space-y-6">
+                             <div className="flex items-start space-x-4"><div className="bg-brand-primary/20 p-3 rounded-full"><MapPin className="w-6 h-6 text-brand-accent"/></div><div><h4 className="font-semibold text-lg text-gray-800">Location</h4><p className="text-gray-600">Kealakekua, Big Island, Hawaii, USA</p></div></div>
+                             <div className="flex items-start space-x-4"><div className="bg-brand-primary/20 p-3 rounded-full"><Mail className="w-6 h-6 text-brand-accent"/></div><div><h4 className="font-semibold text-lg text-gray-800">Email</h4><p className="text-gray-600">casacollectivehawaii@gmail.com</p></div></div>
+                        </div>
+                        <div className="mt-8 rounded-lg overflow-hidden h-64 border">
+                          <iframe 
+                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15065.334103914102!2d-155.93333284999998!3d19.48416605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x795406c26f63116b%3A0x8055263565017688!2sKealakekua%2C%20HI%2096750%2C%20USA!5e0!3m2!1sen!2sca!4v1690000000000!5m2!1sen!2sca"
+                             width="100%" 
+                             height="100%" 
+                             style={{border:0}} 
+                             allowFullScreen="" 
+                             loading="lazy" 
+                             referrerPolicy="no-referrer-when-downgrade">
+                           </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+
+    function App() {
+      const [currentPage, setCurrentPage] = React.useState('Contact Us');
+      
+      React.useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+            }
+          });
+        }, { threshold: 0.1 });
+
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        elements.forEach(el => observer.observe(el));
+
+        return () => elements.forEach(el => observer.unobserve(el));
+      }, [currentPage]);
+
+
+      const renderPage = () => {
+        switch (currentPage) {
+          case 'Home': return <HomePage setCurrentPage={setCurrentPage} />;
+          case 'Our Accommodations': return <AllListingsPage />;
+          case 'Things To Do': return <ThingsToDoPage />;
+          case 'Where to Eat': return <WhereToEatPage />;
+          case 'About Us': return <AboutUsPage />;
+          case 'Contact Us': return <ContactUsPage />;
+          default: return <HomePage setCurrentPage={setCurrentPage} />;
+        }
+      };
+
+      return (
+        <div className="font-sans antialiased text-gray-900">
+          <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
+          <main>
+            {renderPage()}
+          </main>
+          <Footer setCurrentPage={setCurrentPage} />
+        </div>
+      );
+    }
+
+    const container = document.getElementById('root');
+    const root = ReactDOM.createRoot(container);
+    root.render(<App />);
+
+    </script>
+</body>
+</html>
