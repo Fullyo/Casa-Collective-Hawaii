@@ -5,210 +5,246 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casa Collective Hawaii | Where Design Meets Aloha</title>
     <meta name="description" content="A curated collection of private residences on Hawaii's Big Island, designed for an immersive experience in mind, body, and soul.">
-
-    <!-- Social Share Meta Tags (Open Graph) -->
     <meta property="og:title" content="Casa Collective Hawaii | Where Design Meets Aloha" />
     <meta property="og:description" content="A curated collection of private residences on Hawaii's Big Island, designed for an immersive experience in mind, body, and soul." />
     <meta property="og:image" content="https://casagrateful.b-cdn.net/katherine-kromberg-DWhS1r-hJd0-unsplash.jpg" />
-    <meta property="og:url" content="https://www.your-live-domain.com" /> <!-- TODO: Update this to your live domain -->
+    <meta property="og:url" content="https://casacollectivehawaii.com/" />
     <meta property="og:type" content="website" />
-
-    <!-- Google Fonts -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23616d69'/%3E%3Ctext x='50' y='50' font-size='50' text-anchor='middle' dy='.3em' fill='white' font-family='Cormorant Garamond, serif'%3ECC%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Raleway:wght@700&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Link to central stylesheet -->
     <link rel="stylesheet" href="style.css">
-
     <script>
-      // Custom Tailwind configuration
       tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              'sans': ['Open Sans', 'sans-serif'],
-              'title': ['Cormorant Garamond', 'serif'],
-              'subtitle': ['Montserrat', 'sans-serif'],
-              'section': ['Raleway', 'sans-serif'],
-            },
-            colors: {
-              brand: {
-                primary: '#dbc9ba',
-                secondary: '#a89c90',
-                accent: '#616d69',
-                bg: '#f7f5f2'
-              }
-            }
-          }
-        }
+        theme: { extend: { fontFamily: { 'sans': ['Open Sans', 'sans-serif'], 'title': ['Cormorant Garamond', 'serif'], 'subtitle': ['Montserrat', 'sans-serif'], 'section': ['Raleway', 'sans-serif'], }, colors: { brand: { primary: '#dbc9ba', secondary: '#a89c90', accent: '#616d69', bg: '#f7f5f2' } } } }
       }
     </script>
 </head>
-<body class="bg-brand-bg font-sans antialiased text-gray-900">
-
-    <!-- Header -->
+<body class="bg-brand-bg font-sans">
     <header class="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50 w-full">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20">
-          <div class="flex-shrink-0">
-            <a href="/" class="flex items-center space-x-2 cursor-pointer">
-              <h1 class="font-title text-3xl text-brand-accent">Casa Collective Hawaii</h1>
-            </a>
-          </div>
-          <nav class="hidden md:flex space-x-1 lg:space-x-4">
-            <a href="/" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-brand-accent">Home</a>
-            <a href="/accommodations" target="_blank" rel="noopener noreferrer" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">Our Accommodations</a>
-            <a href="/things-to-do" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">Things To Do</a>
-            <a href="/where-to-eat" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">Where to Eat</a>
-            <a href="/about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">About Us</a>
-            <a href="/contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">Contact Us</a>
-          </nav>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="/" class="flex-shrink-0">
+                    <div class="flex items-center space-x-2 cursor-pointer">
+                        <h1 class="font-title text-3xl text-brand-accent">Casa Collective Hawaii</h1>
+                    </div>
+                </a>
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-4">
+                    <a href="/" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-brand-accent transition-colors duration-300">Home</a>
+                    <a href="/accommodations" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">Our Accommodations</a>
+                    <a href="/things-to-do" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">Things To Do</a>
+                    <a href="/where-to-eat" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">Where to Eat</a>
+                    <a href="/about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">About Us</a>
+                    <a href="/contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">Contact Us</a>
+                    <a href="https://casacollectivehawaii.guestybookings.com/en/properties?minOccupancy=1" target="_blank" class="ml-4 bg-brand-primary text-white font-bold text-sm py-2 px-4 rounded-lg hover:bg-brand-secondary transition duration-300 transform hover:scale-105">Book Your Stay</a>
+                </nav>
+                <div class="md:hidden"><button id="mobile-menu-button" class="text-gray-700 focus:outline-none" aria-label="Open navigation menu"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button></div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-2">
+                <a href="/" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
+                <a href="/accommodations" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Our Accommodations</a>
+                <a href="/things-to-do" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Things To Do</a>
+                <a href="/where-to-eat" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Where to Eat</a>
+                <a href="/about" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">About Us</a>
+                <a href="/contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contact Us</a>
+                <a href="https://casacollectivehawaii.guestybookings.com/en/properties?minOccupancy=1" target="_blank" class="block mx-4 my-2 bg-brand-primary text-white font-bold text-center py-2 px-4 rounded-lg hover:bg-brand-secondary transition duration-300">Book Your Stay</a>
+            </div>
         </div>
-      </div>
     </header>
-
     <main>
-        <!-- Hero Section -->
         <div class="relative bg-gray-800 h-[85vh] min-h-[600px] flex items-center justify-center text-white text-center overflow-hidden">
             <div class="absolute inset-0">
-                <img src="https://casagrateful.b-cdn.net/katherine-kromberg-DWhS1r-hJd0-unsplash.jpg" alt="Where Design Meets Aloha." class="hero-image w-full h-full object-cover object-center" onError="this.onerror=null;this.src='https://placehold.co/1920x1080/334155/FFFFFF?text=Casa+Collective';"/>
+                <img src="https://casagrateful.b-cdn.net/katherine-kromberg-DWhS1r-hJd0-unsplash.jpg" alt="Where Design Meets Aloha." class="hero-image w-full h-full object-cover object-center"/>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             </div>
             <div class="relative z-10 px-4">
                 <h1 class="text-4xl md:text-7xl font-title font-bold tracking-tight leading-tight mb-4" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5)">Where Design Meets Aloha.</h1>
                 <p class="text-lg md:text-xl max-w-3xl mx-auto font-subtitle" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.5)">Escape to the tropical paradise of Hawaii’s Big Island</p>
                 <div class="mt-8">
-                    <a href="/accommodations" target="_blank" class="bg-brand-primary hover:bg-brand-secondary text-white font-bold py-4 px-8 rounded-lg transition duration-300 text-lg shadow-lg transform hover:scale-105">
-                        Explore Our Stays
-                    </a>
+                    <a href="/accommodations" class="bg-brand-primary hover:bg-brand-secondary text-white font-bold py-4 px-8 rounded-lg transition duration-300 text-lg shadow-lg transform hover:scale-105">Explore Our Stays</a>
                 </div>
             </div>
         </div>
-
-        <!-- Intro Section -->
         <section class="py-20 sm:py-32 bg-white animate-on-scroll">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                     <div class="rounded-lg overflow-hidden shadow-xl">
-                        <img src="https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.16%20PM.png" alt="Immersive Getaway" class="w-full h-full object-cover"/>
-                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-xl"><img src="https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.16%20PM.png" alt="Immersive Getaway" class="w-full h-full object-cover"/></div>
                     <div>
                         <h2 class="text-3xl lg:text-4xl font-section font-bold text-gray-800 mb-4">Your Immersive Getaway Awaits</h2>
-                        <p class="text-gray-700 mb-8 leading-relaxed">
-                            Casa Collective Hawaii apartments, meticulously crafted by the Twin Island Interiors Design Group, beckon you to escape to the tropical paradise of Hawaii's Big Island. We are dedicated to providing you with a complete experience from the moment you step through the door.
-                        </p>
-                        <a href="/accommodations" target="_blank" class="bg-brand-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-brand-secondary transition-transform duration-300 transform hover:scale-105 inline-block">
-                            Choose Your Stay
-                        </a>
+                        <p class="text-gray-700 mb-8 leading-relaxed">Casa Collective Hawaii apartments, meticulously crafted by the Twin Island Interiors Design Group, beckon you to escape to the tropical paradise of Hawaii's Big Island. We are dedicated to providing you with a complete experience from the moment you step through the door.</p>
+                        <a href="/accommodations" class="bg-brand-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-brand-secondary transition-transform duration-300 transform hover:scale-105 inline-block">Choose Your Stay</a>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Our Accommodations Section (simplified) -->
         <section class="py-20 sm:py-32 bg-white animate-on-scroll">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 class="text-3xl lg:text-4xl font-section font-bold text-center text-gray-800 mb-16">Our Accommodations</h2>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                <!-- Property Card: Example for brevity -->
-                <div class="property-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer" data-booking-url="https://casagrateful.guestybookings.com/en/properties/685304032fff27001369da07?minOccupancy=1">
-                    <div class="relative group">
-                        <img src="https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.16%20PM.png" alt="Casa Grateful" class="h-64 w-full object-cover"/>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-title font-bold text-gray-800 mb-2">Casa Grateful</h3>
-                        <div class="flex items-center text-gray-600 space-x-4 mb-4">
-                          <span class="flex items-center">5 guests</span>
-                          <span class="flex items-center">1 bedroom</span>
-                          <span class="flex items-center">1 bath</span>
+                <h2 class="text-3xl lg:text-4xl font-section font-bold text-center text-gray-800 mb-16">Our Accommodations</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer" onclick="window.open('https://casacollectivehawaii.guestybookings.com/en/properties/685304032fff27001369da07?minOccupancy=1', '_blank')">
+                        <div class="relative group carousel" data-slider-id="1">
+                            <img src="https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.16%20PM.png" alt="Casa Grateful 1" class="carousel-image h-64 w-full object-cover">
+                            <img src="https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.36%20PM.png" alt="Casa Grateful 2" class="carousel-image h-64 w-full object-cover" style="display: none;">
+                            <img src="https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.44%20PM.png" alt="Casa Grateful 3" class="carousel-image h-64 w-full object-cover" style="display: none;">
+                            <img src="https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.57.48%20PM.png" alt="Casa Grateful 4" class="carousel-image h-64 w-full object-cover" style="display: none;">
+                            <img src="https://casagrateful.b-cdn.net/Rental%201/Screenshot%202025-07-21%204.58.03%20PM.png" alt="Casa Grateful 5" class="carousel-image h-64 w-full object-cover" style="display: none;">
+                            <button class="carousel-prev carousel-arrow opacity-0 group-hover:opacity-100 absolute top-1/2 left-2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-2"><svg class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></button>
+                            <button class="carousel-next carousel-arrow opacity-0 group-hover:opacity-100 absolute top-1/2 right-2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-2"><svg class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></button>
                         </div>
-                        <button class="w-full bg-brand-primary text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-secondary transition duration-300 transform hover:scale-105">
-                          View Details & Book
-                        </button>
+                        <div class="p-6">
+                            <h3 class="text-xl font-title font-bold text-gray-800 mb-2">Casa Grateful</h3>
+                            <div class="flex items-center text-gray-600 space-x-4 mb-4">
+                                <span class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-1 text-brand-accent"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 5 guests</span>
+                                <span class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-1 text-brand-accent"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 10v10"/><path d="M2 18h20"/></svg> 1 bedroom</span>
+                                <span class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-1 text-brand-accent"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-2.12 0L3 5a1.5 1.5 0 0 0 0 2.12L5 9l4-4Z M3.5 16.5 6 19l3-3L7 14l-3.5 2.5ZM18 11h.01 M13 16h.01 M17 7h.01 M21 15h.01 M21 3v2a2 2 0 0 1-2 2H7.5a2 2 0 0 0-1.76.97L3 11h18a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"/></svg> 1 bath</span>
+                            </div>
+                            <button class="w-full bg-brand-primary text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-secondary transition duration-300 transform hover:scale-105">View Details & Book</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer" onclick="window.open('https://casacollectivehawaii.guestybookings.com/en/properties/685303e1363e040022c86fa3?minOccupancy=1', '_blank')">
+                        <div class="relative group carousel" data-slider-id="2">
+                            <img src="https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.27%20PM.png" alt="Casa Gratitude 1" class="carousel-image h-64 w-full object-cover">
+                            <img src="https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.33%20PM.png" alt="Casa Gratitude 2" class="carousel-image h-64 w-full object-cover" style="display: none;">
+                            <img src="https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.39%20PM.png" alt="Casa Gratitude 3" class="carousel-image h-64 w-full object-cover" style="display: none;">
+                            <img src="https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.43%20PM.png" alt="Casa Gratitude 4" class="carousel-image h-64 w-full object-cover" style="display: none;">
+                            <img src="https://casagrateful.b-cdn.net/Rental%202/Screenshot%202025-07-21%205.12.53%20PM.png" alt="Casa Gratitude 5" class="carousel-image h-64 w-full object-cover" style="display: none;">
+                            <button class="carousel-prev carousel-arrow opacity-0 group-hover:opacity-100 absolute top-1/2 left-2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-2"><svg class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></button>
+                            <button class="carousel-next carousel-arrow opacity-0 group-hover:opacity-100 absolute top-1/2 right-2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-2"><svg class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></button>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-title font-bold text-gray-800 mb-2">Casa Gratitude</h3>
+                            <div class="flex items-center text-gray-600 space-x-4 mb-4">
+                               <span class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-1 text-brand-accent"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 5 guests</span>
+                                <span class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-1 text-brand-accent"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 10v10"/><path d="M2 18h20"/></svg> 2 bedrooms</span>
+                                <span class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-1 text-brand-accent"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-2.12 0L3 5a1.5 1.5 0 0 0 0 2.12L5 9l4-4Z M3.5 16.5 6 19l3-3L7 14l-3.5 2.5ZM18 11h.01 M13 16h.01 M17 7h.01 M21 15h.01 M21 3v2a2 2 0 0 1-2 2H7.5a2 2 0 0 0-1.76.97L3 11h18a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"/></svg> 2 baths</span>
+                            </div>
+                            <button class="w-full bg-brand-primary text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-secondary transition duration-300 transform hover:scale-105">View Details & Book</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer" onclick="window.open('https://casacollectivehawaii.guestybookings.com/en/properties/6878af1fde36ed001380c5a8?minOccupancy=1', '_blank')">
+                        <div class="relative group carousel" data-slider-id="3">
+                            <img src="https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.12.54%20PM.png" alt="Casa Aloha 1" class="carousel-image h-64 w-full object-cover">
+                            <img src="https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.13.51%20PM.png" alt="Casa Aloha 2" class="carousel-image h-64 w-full object-cover" style="display: none;">
+                            <img src="https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.13.57%20PM.png" alt="Casa Aloha 3" class="carousel-image h-64 w-full object-cover" style="display: none;">
+                            <img src="https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.14.03%20PM.png" alt="Casa Aloha 4" class="carousel-image h-64 w-full object-cover" style="display: none;">
+                            <img src="https://casagrateful.b-cdn.net/Aloha/Screenshot%202025-08-12%206.14.07%20PM.png" alt="Casa Aloha 5" class="carousel-image h-64 w-full object-cover" style="display: none;">
+                            <button class="carousel-prev carousel-arrow opacity-0 group-hover:opacity-100 absolute top-1/2 left-2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-2"><svg class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></button>
+                            <button class="carousel-next carousel-arrow opacity-0 group-hover:opacity-100 absolute top-1/2 right-2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-2"><svg class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></button>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-title font-bold text-gray-800 mb-2">Casa Aloha</h3>
+                            <div class="flex items-center text-gray-600 space-x-4 mb-4">
+                                <span class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-1 text-brand-accent"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 4 guests</span>
+                                <span class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-1 text-brand-accent"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 10v10"/><path d="M2 18h20"/></svg> 1 bedroom</span>
+                                <span class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-1 text-brand-accent"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-2.12 0L3 5a1.5 1.5 0 0 0 0 2.12L5 9l4-4Z M3.5 16.5 6 19l3-3L7 14l-3.5 2.5ZM18 11h.01 M13 16h.01 M17 7h.01 M21 15h.01 M21 3v2a2 2 0 0 1-2 2H7.5a2 2 0 0 0-1.76.97L3 11h18a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"/></svg> 1 bath</span>
+                            </div>
+                            <button class="w-full bg-brand-primary text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-secondary transition duration-300 transform hover:scale-105">View Details & Book</button>
+                        </div>
                     </div>
                 </div>
-              </div>
             </div>
         </section>
-
-        <!-- Highlights Section (simplified) -->
         <section class="py-20 sm:py-32 bg-gradient-to-b from-white to-brand-bg animate-on-scroll">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 class="text-3xl lg:text-4xl font-section font-bold text-center text-gray-800 mb-16">An Unforgettable Stay</h2>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-5xl mx-auto">
-                <div>
-                  <div class="mb-4 inline-block p-4 bg-brand-primary/20 rounded-full">🌊</div>
-                  <h3 class="text-xl font-title font-bold text-gray-900 mb-2">Panoramic Ocean Views</h3>
-                  <p class="text-gray-600">Wake up to breathtaking ocean views that stretch for miles.</p>
+                <h2 class="text-3xl lg:text-4xl font-section font-bold text-center text-gray-800 mb-16">An Unforgettable Stay</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-5xl mx-auto">
+                    <div>
+                        <div class="mb-4 inline-block p-4 bg-brand-primary/20 rounded-full"><svg class="w-10 h-10 text-brand-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg></div>
+                        <h3 class="text-xl font-title font-bold text-gray-900 mb-2">Panoramic Ocean Views</h3>
+                        <p class="text-gray-600">Wake up to breathtaking ocean views that stretch for miles.</p>
+                    </div>
+                    <div>
+                        <div class="mb-4 inline-block p-4 bg-brand-primary/20 rounded-full"><svg class="w-10 h-10 text-brand-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><path d="M12 10l2-4-4 2 2 2z"/></svg></div>
+                        <h3 class="text-xl font-title font-bold text-gray-900 mb-2">Prime Location</h3>
+                        <p class="text-gray-600">Perfectly situated to explore the best beaches and attractions of the Big Island.</p>
+                    </div>
+                    <div>
+                        <div class="mb-4 inline-block p-4 bg-brand-primary/20 rounded-full"><svg class="w-10 h-10 text-brand-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3L9.18 8.82a3 3 0 0 0 2.2 4.68L18 12l-6.18 1.5a3 3 0 0 0-2.2 4.68L12 21l2.82-5.82a3 3 0 0 0-2.2-4.68L6 12l6.18-1.5a3 3 0 0 0 2.2-4.68z"/></svg></div>
+                        <h3 class="text-xl font-title font-bold text-gray-900 mb-2">Designer Interiors</h3>
+                        <p class="text-gray-600">Meticulously crafted by the Twin Island Interiors Design Group for your comfort.</p>
+                    </div>
                 </div>
-                <div>
-                  <div class="mb-4 inline-block p-4 bg-brand-primary/20 rounded-full">📍</div>
-                  <h3 class="text-xl font-title font-bold text-gray-900 mb-2">Prime Location</h3>
-                  <p class="text-gray-600">Perfectly situated to explore the best beaches and attractions of the Big Island.</p>
-                </div>
-                <div>
-                  <div class="mb-4 inline-block p-4 bg-brand-primary/20 rounded-full">🎨</div>
-                  <h3 class="text-xl font-title font-bold text-gray-900 mb-2">Designer Interiors</h3>
-                  <p class="text-gray-600">Meticulously crafted by the Twin Island Interiors Design Group for your comfort.</p>
-                </div>
-              </div>
             </div>
         </section>
-
-        <!-- CTA Section -->
+        <section class="py-20 sm:py-32 bg-brand-accent text-white animate-on-scroll">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <h2 class="text-3xl lg:text-4xl font-section font-bold text-center mb-16">What Our Guests Say</h2>
+                <div class="max-w-3xl mx-auto text-center relative">
+                    <div id="testimonial-container">
+                        <div class="testimonial">
+                            <div class="text-5xl text-brand-primary opacity-50">“</div>
+                            <p class="text-xl md:text-2xl font-subtitle italic mb-6">The house was amazing, and the views were breathtaking. We had a fantastic time snorkeling in the bay and exploring the area. The hosts were incredibly helpful and responsive. We can't wait to come back!</p>
+                            <p class="font-bold text-lg">- Jessica M.</p>
+                        </div>
+                        <div class="testimonial" style="display: none;">
+                            <div class="text-5xl text-brand-primary opacity-50">“</div>
+                            <p class="text-xl md:text-2xl font-subtitle italic mb-6">An absolute paradise. Waking up to the sound of the ocean was a dream. The property was immaculate and had everything we needed for a comfortable stay. Highly recommend!</p>
+                            <p class="font-bold text-lg">- David L.</p>
+                        </div>
+                    </div>
+                    <button id="prev-testimonial" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-2 rounded-full transition"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></button>
+                    <button id="next-testimonial" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-2 rounded-full transition"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></button>
+                </div>
+            </div>
+        </section>
+        <section class="py-20 sm:py-32 bg-white animate-on-scroll">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl lg:text-4xl font-section font-bold text-center text-gray-800 mb-16">Experience the Beauty of Hawaii</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"><img loading="lazy" src="https://casagrateful.b-cdn.net/Web%20Photos/chloe-leis-qUVov_XcAc0-unsplash.jpg" alt="Hawaii Gallery Image 1" class="w-full h-full object-cover aspect-[4/3]"/></div>
+                    <div class="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"><img loading="lazy" src="https://casagrateful.b-cdn.net/Food/charlota-blunarova-JcchA0_Z-fA-unsplash.jpg" alt="Hawaii Gallery Image 2" class="w-full h-full object-cover aspect-[4/3]"/></div>
+                    <div class="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"><img loading="lazy" src="https://casagrateful.b-cdn.net/Web%20Photos/jeremy-bishop-GIpGxe2_cT4-unsplash.jpg" alt="Hawaii Gallery Image 3" class="w-full h-full object-cover aspect-[4/3]"/></div>
+                    <div class="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"><img loading="lazy" src="https://casagrateful.b-cdn.net/Web%20Photos/pascal-debrunner-lHJZ2JTxSlI-unsplash.jpg" alt="Hawaii Gallery Image 4" class="w-full h-full object-cover aspect-[4/3]"/></div>
+                    <div class="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"><img loading="lazy" src="https://casagrateful.b-cdn.net/Food/nico-smit-F3BVzo_h9Sg-unsplash.jpg" alt="Hawaii Gallery Image 5" class="w-full h-full object-cover aspect-[4/3]"/></div>
+                    <div class="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"><img loading="lazy" src="https://casagrateful.b-cdn.net/Web%20Photos/jake-houglum-dxdA7qd7Y9o-unsplash.jpg" alt="Hawaii Gallery Image 6" class="w-full h-full object-cover aspect-[4/3]"/></div>
+                </div>
+            </div>
+        </section>
         <section class="bg-brand-bg animate-on-scroll">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-              <h2 class="text-3xl lg:text-4xl font-section font-bold text-gray-800 mb-4">Your Perfect Getaway Awaits</h2>
-              <p class="text-gray-600 max-w-2xl mx-auto mb-8">Ready to experience the magic of Casa Collective Hawaii? Check availability and book your unforgettable vacation today. We can't wait to welcome you.</p>
-              <a href="/accommodations" target="_blank" class="bg-brand-primary hover:bg-brand-secondary text-white font-bold py-4 px-8 rounded-lg transition duration-300 text-lg shadow-lg transform hover:scale-105 inline-block">
-                Book Your Stay
-              </a>
+                <h2 class="text-3xl lg:text-4xl font-section font-bold text-gray-800 mb-4">Your Perfect Getaway Awaits</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mb-8">Ready to experience the magic of Casa Collective Hawaii? Check availability and book your unforgettable vacation today. We can't wait to welcome you.</p>
+                <a href="https://casacollectivehawaii.guestybookings.com/en/properties?minOccupancy=1" target="_blank" class="bg-brand-primary hover:bg-brand-secondary text-white font-bold py-4 px-8 rounded-lg transition duration-300 text-lg shadow-lg transform hover:scale-105 inline-block">Book Your Stay</a>
             </div>
         </section>
     </main>
-
-    <!-- Footer -->
-    <footer class="bg-brand-primary text-brand-accent">
+    <footer class="bg-brand-accent text-brand-primary">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <h2 class="font-title text-2xl text-brand-accent mb-4">Casa Collective Hawaii</h2>
-                    <p class="text-sm">A curated collection of private residences on Hawaii's Big Island, designed for an immersive experience in mind, body, and soul.</p>
+                    <h2 class="font-title text-2xl text-white mb-4">Casa Collective Hawaii</h2>
+                    <p class="text-sm text-brand-primary/80">A curated collection of private residences on Hawaii's Big Island, designed for an immersive experience in mind, body, and soul.</p>
                 </div>
                 <div>
-                  <h3 class="text-lg font-section font-bold mb-4">Quick Links</h3>
-                  <ul class="space-y-2 text-sm">
-                    <li><a href="/" class="hover:text-white transition">Home</a></li>
-                    <li><a href="/accommodations" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">Our Accommodations</a></li>
-                    <li><a href="/about" class="hover:text-white transition">About Us</a></li>
-                    <li><a href="/contact" class="hover:text-white transition">Contact Us</a></li>
-                  </ul>
+                    <h3 class="text-lg font-section font-bold text-white mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="/accommodations" class="hover:text-white transition">Our Accommodations</a></li>
+                        <li><a href="/about" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="/contact" class="hover:text-white transition">Contact Us</a></li>
+                    </ul>
                 </div>
                 <div>
-                  <h3 class="text-lg font-section font-bold mb-4">Connect</h3>
-                  <ul class="space-y-2 text-sm">
-                    <li class="flex items-center">Kealakekua, HI, USA</li>
-                    <li class="flex items-center">casacollectivehawaii@gmail.com</li>
-                    <li class="flex items-center">
-                        <a href="https://www.instagram.com/casacollectivehawaii" target="_blank" rel="noopener noreferrer" class="flex items-center hover:text-white transition">
-                            @casacollectivehawaii
-                        </a>
-                    </li>
-                  </ul>
+                    <h3 class="text-lg font-section font-bold text-white mb-4">Connect</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Kealakekua, HI, USA</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> casacollectivehawaii@gmail.com</li>
+                        <li class="flex items-center">
+                            <a href="https://www.instagram.com/casacollectivehawaii" target="_blank" rel="noopener noreferrer" class="flex items-center hover:text-white transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg> @casacollectivehawaii
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-              </div>
-              <div class="mt-8 pt-8 border-t border-brand-secondary/50 text-center text-sm">
-                <p>© 2025 Casa Collective Hawaii. All Rights Reserved.</p>
-                <p class="text-xs text-brand-accent/70 mt-2">
-                    Website by <a href="https://www.fullyo.io" target="_blank" rel="noopener noreferrer" class="hover:text-white">Fullyo</a>
-                </p>
-              </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-brand-primary/20 text-center text-sm">
+                <p>&copy; 2025 Casa Collective Hawaii. All Rights Reserved.</p>
+                <p class="text-xs text-brand-primary/70 mt-2">Website by <a href="https://www.fullyo.io" target="_blank" rel="noopener noreferrer" class="hover:text-white">Fullyo</a></p>
+            </div>
         </div>
     </footer>
-
+    <script src="script.js" defer></script>
 </body>
 </html>
