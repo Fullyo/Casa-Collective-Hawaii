@@ -1,114 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Casa Collective Hawaii</title>
-    <meta name="description" content="Meet Meg, the interior designer and host behind Casa Collective Hawaii. Learn about our philosophy and the story of our curated Big Island accommodations.">
-    <meta property="og:title" content="About Us | Casa Collective Hawaii" />
-    <meta property="og:description" content="Meet Meg, the interior designer and host behind Casa Collective Hawaii. Learn about our philosophy." />
-    <meta property="og:image" content="https://casagrateful.b-cdn.net/Screenshot%202025-09-23%2011.40.55%20AM.png" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23616d69'/%3E%3Ctext x='50' y='50' font-size='50' text-anchor='middle' dy='.3em' fill='white' font-family='Cormorant Garamond, serif'%3ECC%3C/text%3E%3C/svg%3E">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Raleway:wght@700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <script>
-      tailwind.config = { theme: { extend: { fontFamily: { 'sans': ['Open Sans', 'sans-serif'], 'title': ['Cormorant Garamond', 'serif'], 'subtitle': ['Montserrat', 'sans-serif'], 'section': ['Raleway', 'sans-serif'], }, colors: { brand: { primary: '#dbc9ba', secondary: '#a89c90', accent: '#616d69', bg: '#f7f5f2' } } } } }
-    </script>
-</head>
-<body class="bg-brand-bg font-sans">
-    <header class="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50 w-full">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <a href="/" class="flex-shrink-0">
-                    <div class="flex items-center space-x-2 cursor-pointer"><h1 class="font-title text-3xl text-brand-accent">Casa Collective Hawaii</h1></div>
-                </a>
-                <nav class="hidden md:flex items-center space-x-1 lg:space-x-4">
-                    <a href="/" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">Home</a>
-                    <a href="/accommodations" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">Our Accommodations</a>
-                    <a href="/things-to-do" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">Things To Do</a>
-                    <a href="/where-to-eat" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">Where to Eat</a>
-                    <a href="/about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-brand-accent transition-colors duration-300">About Us</a>
-                    <a href="/contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand-accent transition-colors duration-300">Contact Us</a>
-                    <a href="https://casacollectivehawaii.guestybookings.com/en/properties?minOccupancy=1" target="_blank" class="ml-4 bg-brand-primary text-white font-bold text-sm py-2 px-4 rounded-lg hover:bg-brand-secondary transition duration-300 transform hover:scale-105">Book Your Stay</a>
-                </nav>
-                <div class="md:hidden"><button id="mobile-menu-button" class="text-gray-700 focus:outline-none" aria-label="Open navigation menu"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button></div>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-2">
-                <a href="/" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
-                <a href="/accommodations" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Our Accommodations</a>
-                <a href="/things-to-do" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Things To Do</a>
-                <a href="/where-to-eat" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Where to Eat</a>
-                <a href="/about" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">About Us</a>
-                <a href="/contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contact Us</a>
-                <a href="https://casacollectivehawaii.guestybookings.com/en/properties?minOccupancy=1" target="_blank" class="block mx-4 my-2 bg-brand-primary text-white font-bold text-center py-2 px-4 rounded-lg hover:bg-brand-secondary transition duration-300">Book Your Stay</a>
-            </div>
-        </div>
-    </header>
-    <main>
-        <div class="relative bg-gray-800 h-[50vh] min-h-[400px] flex items-center justify-center text-white text-center overflow-hidden">
-            <div class="absolute inset-0">
-                <img src="https://casagrateful.b-cdn.net/Web%20Photos/look-up-look-down-photography-t02XukS9dUU-unsplash.jpg" alt="About Us" class="hero-image w-full h-full object-cover object-bottom"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            </div>
-            <div class="relative z-10 px-4">
-                <h1 class="text-4xl md:text-7xl font-title font-bold tracking-tight leading-tight mb-4" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5)">About Us</h1>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto font-subtitle" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.5)">Meet the family behind Casa Collective Hawaii</p>
-            </div>
-        </div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
-            <div class="bg-white p-8 sm:p-12 rounded-2xl shadow-xl animate-on-scroll">
-                <div class="grid md:grid-cols-3 gap-8 md:gap-12 items-center">
-                    <div class="md:col-span-2">
-                        <h2 class="text-3xl lg:text-4xl font-section font-bold text-gray-800 mb-6">Our Story</h2>
-                        <div class="prose text-gray-700 max-w-none">
-                            <p>Hello, I'm Meg, a Michigan native with a passion for creating unique and memorable experiences. With a background in interior design, property management, and personal concierge services, I've brought a distinctive touch to our short-term rental that sets it apart from the rest on the island.</p>
-                            <p>When you step into our space, you'll immediately notice a decor that goes beyond the ordinary. I believe in offering more than just a place to rest your head – I want you to truly enjoy every aspect of your visit, engaging your mind, body, and soul. As a testament to this, our properties feature dedicated meditation spaces on private lanais, providing a tranquil retreat for reflection and relaxation.</p>
-                            <p>My connection to the Hawaiian Islands goes beyond the physical - it's a calling that I've felt since my childhood, a series of dreams that led me to this beautiful place. My husband, a proud Kailua Kona local, and I are raising our two beautiful children on this gorgeous island. By choosing our rentals, you're gaining the unique perspective of a local homegrown boy and a Michigan import.</p>
-                            <p>We are dedicated to crafting the best accommodations for our guests, and it brings us immense joy to share with you the rich culture, natural beauty, and aloha spirit that defines the Big Island. Your visit is an opportunity for us to fill your cup with the warmth and hospitality that embodies our home. We look forward to welcoming you to Casa Collective Hawaii, where every detail is designed to enhance your experience of the culture, beauty, and aloha that the Big Island has to offer.</p>
-                            <p>Mahalo,<br/>Meg</p>
-                        </div>
-                    </div>
-                    <div class="md:col-span-1">
-                        <img loading="lazy" src="https://casagrateful.b-cdn.net/Screenshot%202025-09-23%2011.40.55%20AM.png" alt="The family behind Casa Collective Hawaii" class="rounded-xl shadow-2xl w-full h-auto aspect-[4/5] object-cover"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    <footer class="bg-brand-accent text-brand-primary">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <h2 class="font-title text-2xl text-white mb-4">Casa Collective Hawaii</h2>
-                    <p class="text-sm text-brand-primary/80">A curated collection of private residences on Hawaii's Big Island, designed for an immersive experience in mind, body, and soul.</p>
-                </div>
-                <div>
-                    <h3 class="text-lg font-section font-bold text-white mb-4">Quick Links</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/" class="hover:text-white transition">Home</a></li>
-                        <li><a href="/accommodations" class="hover:text-white transition">Our Accommodations</a></li>
-                        <li><a href="/about" class="hover:text-white transition">About Us</a></li>
-                        <li><a href="/contact" class="hover:text-white transition">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-section font-bold text-white mb-4">Connect</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li class="flex items-center"><svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Kealakekua, HI, USA</li>
-                        <li class="flex items-center"><svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> casacollectivehawaii@gmail.com</li>
-                        <li class="flex items-center"><a href="https://www.instagram.com/casacollectivehawaii" target="_blank" rel="noopener noreferrer" class="flex items-center hover:text-white transition"><svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg> @casacollectivehawaii</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-8 pt-8 border-t border-brand-primary/20 text-center text-sm">
-                <p>&copy; 2025 Casa Collective Hawaii. All Rights Reserved.</p>
-                <p class="text-xs text-brand-primary/70 mt-2">Website by <a href="https://www.fullyo.io" target="_blank" rel="noopener noreferrer" class="hover:text-white">Fullyo</a></p>
-            </div>
-        </div>
-    </footer>
-    <script src="script.js" defer></script>
-</body>
-</html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Casa Collective Hawaii</title>
+<meta name="description" content="The story and values behind Casa Collective Hawaii—designer stays crafted with aloha in Kealakekua.">
+<!-- Open Graph -->
+<meta property="og:title" content="About Casa Collective Hawaii" />
+<meta property="og:description" content="The story and values behind Casa Collective Hawaii—designer stays crafted with aloha in Kealakekua." />
+<meta property="og:image" content="https://casagrateful.b-cdn.net/Web%20Photos/look-up-look-down-photography-t02XukS9dUU-unsplash.jpg" />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23616d69'/%3E%3Ctext x='50' y='50' font-size='50' text-anchor='middle' dy='.3em' fill='white' font-family='Cormorant Garamond, serif'%3ECC%3C/text%3E%3C/svg%3E">
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&family=Raleway:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script defer src="/script.js"></script>
+    </head>
+    <body>
+      <header class="header">
+  <div class="container navwrap">
+    <a href="/" class="brand">
+      <img src="https://casagrateful.b-cdn.net/casacollective%20-%20Edited.png" alt="Casa Collective Hawaii logo" class="brand__img">
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link" href="/">Home</a>
+      <a class="nav__link" href="/accommodations">Our Accommodations</a>
+      <a class="nav__link" href="/things-to-do">Things To Do</a>
+      <a class="nav__link" href="/where-to-eat">Where to Eat</a>
+      <a class="nav__link" href="/about">About Us</a>
+      <a class="nav__link" href="/contact">Contact Us</a>
+      <a class="btn btn--primary" href="https://casacollectivehawaii.guestybookings.com/en/properties?minOccupancy=1" target="_blank" rel="noopener">Book Your Stay</a>
+    </nav>
+  </div>
+</header>
+      <main><section class="hero">
+  <img src="https://casagrateful.b-cdn.net/Web%20Photos/look-up-look-down-photography-t02XukS9dUU-unsplash.jpg" alt="About Us" class="hero__img" loading="eager" style="object-position:bottom;">
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <h1 class="hero__title">About Us</h1>
+    <p class="hero__subtitle">Meet the family behind Casa Collective Hawaii</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container card p">
+    <div class="grid-2">
+      <div>
+        <h2 class="h2">Our Story</h2>
+        <p>Hello, I'm Meg, a Michigan native with a passion for creating unique and memorable experiences. With a background in interior design, property management, and personal concierge services, I've brought a distinctive touch to our short-term rental that sets it apart from the rest on the island.</p>
+        <p>When you step into our space, you'll immediately notice a decor that goes beyond the ordinary. I believe in offering more than just a place to rest your head – I want you to truly enjoy every aspect of your visit, engaging your mind, body, and soul. Our properties feature dedicated meditation spaces on private lanais, providing a tranquil retreat for reflection and relaxation.</p>
+        <p>My connection to the Hawaiian Islands goes beyond the physical—it's a calling I've felt since my childhood. My husband, a proud Kailua Kona local, and I are raising our two beautiful children on this gorgeous island. By choosing our rentals, you're gaining the unique perspective of a local homegrown boy and a Michigan import.</p>
+        <p>We are dedicated to crafting the best accommodations for our guests, and it brings us immense joy to share with you the rich culture, natural beauty, and aloha spirit that defines the Big Island.</p>
+        <p>Mahalo,<br>Meg</p>
+      </div>
+      <div class="media-ratio">
+        <img src="https://casagrateful.b-cdn.net/Screenshot%202025-09-23%2011.40.55%20AM.png" alt="The family behind Casa Collective Hawaii" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section></main>
+      <footer class="footer">
+  <div class="container grid-3">
+    <div>
+      <h2 class="ft-title">Casa Collective Hawaii</h2>
+      <p class="muted">A curated collection of private residences on Hawaii's Big Island, designed for an immersive experience in mind, body, and soul.</p>
+    </div>
+    <div>
+      <h3 class="ft-h3">Quick Links</h3>
+      <ul class="list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/accommodations">Our Accommodations</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="ft-h3">Connect</h3>
+      <ul class="list">
+        <li>Kealakekua, HI, USA</li>
+        <li>casacollectivehawaii@gmail.com</li>
+        <li><a href="https://www.instagram.com/casacollectivehawaii" target="_blank" rel="noopener">@casacollectivehawaii</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container ft-note">
+    <p>© 2025 Casa Collective Hawaii. All Rights Reserved.</p>
+    <p class="muted">Website by <a href="https://www.fullyo.io" target="_blank" rel="noopener">Fullyo</a></p>
+  </div>
+</footer>
+    </body>
+    </html>

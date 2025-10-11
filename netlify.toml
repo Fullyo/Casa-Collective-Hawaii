@@ -1,5 +1,33 @@
-# Netlify Configuration: Rule for clean URLs
+
+[build]
+  publish = "."
+
 [[redirects]]
-  from = "/*"
-  to = "/:splat.html"
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/accommodations"
+  to = "/accommodations.html"
+  status = 200
+
+[[redirects]]
+  from = "/things-to-do"
+  to = "/things-to-do.html"
+  status = 200
+
+[[redirects]]
+  from = "/where-to-eat"
+  to = "/where-to-eat.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
   status = 200

@@ -1,112 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // --- Mobile Menu ---
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+
+/* Small, framework-free JS for carousels and testimonial slider */
+(function(){
+  // Carousels
+  document.querySelectorAll('[data-role="carousel"]').forEach(function(carousel){
+    var imgs = Array.from(carousel.querySelectorAll('img'));
+    if(!imgs.length) return;
+    var i = 0;
+    function show(idx){
+      imgs.forEach(function(im, k){ im.classList.toggle('active', k===idx); });
     }
+    show(0);
+    var prev = carousel.querySelector('.prev');
+    var next = carousel.querySelector('.next');
+    if(prev) prev.addEventListener('click', function(e){ e.stopPropagation(); i=(i-1+imgs.length)%imgs.length; show(i); });
+    if(next) next.addEventListener('click', function(e){ e.stopPropagation(); i=(i+1)%imgs.length; show(i); });
+  });
 
-    // --- Generic Image Carousels ---
-    const carousels = document.querySelectorAll('.carousel');
-    carousels.forEach(carousel => {
-        const images = carousel.querySelectorAll('.carousel-image');
-        const prevBtn = carousel.querySelector('.carousel-prev');
-        const nextBtn = carousel.querySelector('.carousel-next');
-        let currentIndex = 0;
-
-        if (images.length <= 1) {
-            if (prevBtn) prevBtn.style.display = 'none';
-            if (nextBtn) nextBtn.style.display = 'none';
-            return;
-        }
-
-        function showImage(index) {
-            images.forEach((img, i) => {
-                img.style.display = i === index ? 'block' : 'none';
-            });
-        }
-
-        if (prevBtn) {
-            prevBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                showImage(currentIndex);
-            });
-        }
-
-        if (nextBtn) {
-            nextBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                currentIndex = (currentIndex + 1) % images.length;
-                showImage(currentIndex);
-            });
-        }
-        showImage(currentIndex);
-    });
-
-    // --- Testimonial Slider ---
-    const testimonials = document.querySelectorAll('.testimonial');
-    const prevTestimonialBtn = document.getElementById('prev-testimonial');
-    const nextTestimonialBtn = document.getElementById('next-testimonial');
-    let currentTestimonialIndex = 0;
-
-    function showTestimonial(index) {
-        testimonials.forEach((testimonial, i) => {
-            testimonial.style.display = i === index ? 'block' : 'none';
-        });
-    }
-
-    if (testimonials.length > 0) {
-        showTestimonial(currentTestimonialIndex);
-
-        if (prevTestimonialBtn) {
-            prevTestimonialBtn.addEventListener('click', () => {
-                currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
-                showTestimonial(currentTestimonialIndex);
-            });
-        }
-
-        if (nextTestimonialBtn) {
-            nextTestimonialBtn.addEventListener('click', () => {
-                currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
-                showTestimonial(currentTestimonialIndex);
-            });
-        }
-    }
-
-    // --- Tab Functionality ---
-    const tabLinks = document.querySelectorAll('.tab-link');
-    const tabContents = document.querySelectorAll('.tab-content');
-    if (tabLinks.length > 0) {
-        tabLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const tabId = link.getAttribute('data-tab');
-
-                tabLinks.forEach(innerLink => innerLink.classList.remove('active'));
-                link.classList.add('active');
-
-                tabContents.forEach(content => {
-                    content.classList.toggle('active', content.id === `tab-${tabId}`);
-                });
-            });
-        });
-    }
-
-    // --- Scroll Animations ---
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        animatedElements.forEach(el => observer.observe(el));
-    }
-});
+  // Testimonial simple rotator
+  var quotes = [
+    {q:"The house was amazing, and the views were breathtaking. We had a fantastic time snorkeling in the bay and exploring the area. The hosts were incredibly helpful and responsive. We can't wait to come back!", a:"— Jessica M."},
+    {q:"An absolute paradise. Waking up to the sound of the ocean was a dream. The property was immaculate and had everything we needed for a comfortable stay. Highly recommend!", a:"— David L."}
+  ];
+  var fig = document.querySelector('[data-role="testimonial"]');
+  if(fig){
+    var qEl = fig.querySelector('.testimonial__quote');
+    var aEl = fig.querySelector('.testimonial__author');
+    var idx = 0;
+    function render(){ qEl.textContent = quotes[idx].q; aEl.textContent = quotes[idx].a; }
+    render();
+    var prevBtn = fig.querySelector('[data-action="prev-testimonial"]');
+    var nextBtn = fig.querySelector('[data-action="next-testimonial"]');
+    prevBtn && prevBtn.addEventListener('click', function(){ idx=(idx-1+quotes.length)%quotes.length; render(); });
+    nextBtn && nextBtn.addEventListener('click', function(){ idx=(idx+1)%quotes.length; render(); });
+  }
+})();
